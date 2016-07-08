@@ -465,7 +465,8 @@ class Chronopost extends CarrierModule
 			'{id_order}' => (int)($o->id)
 		); 
 
-		Mail::Send($o->id_lang, 'tracking', 'Tracking number for your order', $templateVars, $customer->email,
+		$mailSubject = Translate::getModuleTranslation('chronopost', 'Tracking number for your order', 'chronopost');
+		Mail::Send($o->id_lang, 'tracking', $mailSubject, $templateVars, $customer->email,
 			$customer->firstname.' '.$customer->lastname, null, null, null, null, _MYDIR_.'/mails/', true);
 	}
 
